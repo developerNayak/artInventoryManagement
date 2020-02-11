@@ -17,6 +17,7 @@ fs.readFile(file, function(err, data){
   if(err){
     location.replace("./register.html");
   }else{
-    location.replace("./login.html");
+     //No need to route in case details are found locally
+    //location.replace("./login.html");
   }
 })

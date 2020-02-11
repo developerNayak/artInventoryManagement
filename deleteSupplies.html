@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <title>Document</title>
+  <script src="node_modules\jquery\dist\jquery.min.js"></script>
+  <link href="node_modules\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+  <title>Delete Supplies</title>
   <style>
   .login-container{
     margin-top: 5%;
@@ -76,18 +76,24 @@
           
               <div class="form-group">
                 <label class="text-white h3">Type of Supply</label>
-                  <input type="text" class="form-control" placeholder="" value="" />
+                <select class="form-control" id="type">
+                  <option></option>
+                </select>
               </div>
               <div class="form-group ">
                 <label class="text-white h3">Brand</label>
-                <input type="text" class="form-control" placeholder="" value="" />
+                <select class="form-control" id="brand">
+                  <option></option>
+                </select>
               </div>
               <div class="form-group ">
                 <label class="text-white h3">Size</label>
-                <input type="text" class="form-control" placeholder="" value="" />
+                <select class="form-control" id="size">
+                  <option></option>
+                </select>
               </div>
               <div class="form-group text-center m-4">
-                <a href="" class="btnSubmit px-5 py-2">Delete Supply</a>
+                <a id="deleteSupply" class="btnSubmit px-5 py-2">Delete Supply</a>
             </div>
               <div class="form-group text-center">
                 <a href="adminDash.html" class="btnSubmit px-5 py-2">Go Back</a>
@@ -97,6 +103,6 @@
       </div>
   </div>
 </div>
-  
+<script src="./scripts/deleteSupplies.js"></script>  
 </body>
 </html>

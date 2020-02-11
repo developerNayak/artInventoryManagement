@@ -1,1 +1,1 @@
-{"loginDetails":{"adminDetails":[{"name":"test","password":"test","type":"admin"},{"name":"test2","password":"test","type":"admin"}]}}
+{"loginDetails":{"adminDetails":[{"name":"admin","password":"test345","type":"admin"}],"staffDetails":[{"name":"staff","password":"test1","type":"staff"}]},"supplyDetails":[{"supplyType":"Notebook","brand":"Classmate","size":"Large","quantity":21,"timestamp":"12/02/2020 01:53:29"}]}

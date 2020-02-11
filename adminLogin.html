@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <title>Document</title>
+  <script src="node_modules\jquery\dist\jquery.min.js"></script>
+  <link href="node_modules\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="node_modules\jquery\dist\jquery.min.js"></script>
+  <title>Login</title>
   <style>
   .login-container{
     margin-top: 5%;
@@ -70,27 +70,28 @@
   
 <div class="container login-container">
   <div class="row">
-      <div class="col-md-3"></div>
       <div class="col-md-6 login-form-1">
           <h3 class="display-4">Admin Login</h3>
           
               <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Your Name *" value="" />
+                  <input type="text" class="form-control" placeholder="UserName *" id="username" />
               </div>
               <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Your Password *" value="" />
+                  <input type="password" class="form-control" placeholder="Password *" id="password" />
               </div>
+              <div class="col-xs-12"><a href="register.html">Register New Admin User?</a></div>
               <div class="form-group text-center">
-                  <input type="submit" class="btnSubmit" value="Login" />
+                  <input type="submit" class="btnSubmit" value="Login" id="loginBtn" />
               </div>
               <div class="form-group text-center">
                 <a href="index.html" class="btnSubmit px-5 py-2" id="">Go Back</a>
             </div>
+
       </div>
           </form>
       </div>
   </div>
 </div>
-  
+<script src="./scripts/adminLogin.js"></script>  
 </body>
 </html>

@@ -23,7 +23,7 @@ $("#adminRegister").click(function(){
   var name = $('#adminName').val();
   var password = $('#adminPass').val();
 
-  if(!checkValue(name) || !checkValue(password)){
+  if(!checkValue(name) && !checkValue(password)){
     bootbox.alert("Please enter all the values before registering.");
     return;
   }
@@ -42,13 +42,43 @@ $("#adminRegister").click(function(){
         var finalData = JSON.stringify(mainObj);
         fs.writeFile(file, finalData, function(err){
           if(!err){
-            bootbox.alert("Admin Details saved successfully");
+            bootbox.alert("Admin Details saved successfully",function(){
+              location.replace('./index.html');
+            });
+          }else{
+            bootbox.alert("Something went wrong. Please try again.");
+          }
+        })
+      }else if(checkObj(mainObj.loginDetails)){
+        mainObj.loginDetails['adminDetails'] = [];
+        mainObj.loginDetails.adminDetails.push(userDetails);
+        var finalData = JSON.stringify(mainObj);
+        fs.writeFile(file, finalData, function(err){
+          if(!err){
+            bootbox.alert("Admin Details saved successfully",function(){
+              location.replace('./index.html');
+            });
+          }else{
+            bootbox.alert("Something went wrong. Please try again.");
+          }
+        })
+      }else{
+        mainObj['loginDetails'] = {};
+        mainObj.loginDetails['adminDetails'] = [];
+        mainObj.loginDetails.adminDetails.push(userDetails);
+        var finalData = JSON.stringify(mainObj);
+        fs.writeFile(file, finalData, function(err){
+          if(!err){
+            bootbox.alert("Admin Details saved successfully",function(){
+              location.replace('./index.html');
+            });
           }else{
             bootbox.alert("Something went wrong. Please try again.");
           }
         })
       }
     }else{
+      //first time registration
       var mainObj = {};
       mainObj['loginDetails'] = {};
       mainObj.loginDetails['adminDetails'] = [];
@@ -57,7 +87,9 @@ $("#adminRegister").click(function(){
       var finalData = JSON.stringify(mainObj);
       fs.writeFile(file, finalData, function(err){
         if(!err){
-          bootbox.alert("Admin Details saved successfully");
+          bootbox.alert("Admin Details saved successfully",function(){
+            location.replace('./index.html');
+          });
         }else{
           bootbox.alert("Something went wrong. Please try again.");
         }
@@ -71,7 +103,7 @@ $("#staffRegister").click(function(){
   var name = $('#staffName').val();
   var password = $('#staffPass').val();
 
-  if(!checkValue(name) || !checkValue(password)){
+  if(!checkValue(name) && !checkValue(password)){
     bootbox.alert("Please enter all the values before registering.");
     return;
   }
@@ -85,23 +117,64 @@ $("#staffRegister").click(function(){
   fs.readFile(file, function(err, data){
     if(!err){
       var mainObj = JSON.parse(data);
-      if(!checkObj(mainObj.loginDetails.staffDetails)){
-        //first time register
-        mainObj['loginObj'] = {};
-        mainObj.loginObj['staffDetails'] = [];
+      if(checkObj(mainObj.loginDetails.staffDetails)){
         mainObj.loginDetails.staffDetails.push(userDetails);
-        mainObj['staffDetails'] = loginObj;
         var finalData = JSON.stringify(mainObj);
         fs.writeFile(file, finalData, function(err){
           if(!err){
-            bootbox.alert("Admin Details saved successfully");
+            bootbox.alert("Staff Details saved successfully",function(){
+              location.replace('./index.html');
+            });
           }else{
             bootbox.alert("Something went wrong. Please try again.");
           }
         })
-      }else{
+      }else if(checkObj(mainObj.loginDetails)){
+        mainObj.loginDetails['staffDetails'] = [];
         mainObj.loginDetails.staffDetails.push(userDetails);
+    
+        var finalData = JSON.stringify(mainObj);
+        fs.writeFile(file, finalData, function(err){
+          if(!err){
+            bootbox.alert("Staff Details saved successfully",function(){
+              location.replace('./index.html');
+            });
+          }else{
+            bootbox.alert("Something went wrong. Please try again.");
+          }
+        }) 
+      }else{
+        mainObj['loginDetails'] = {};
+        mainObj.loginDetails['staffDetails'] = [];
+        mainObj.loginDetails.staffDetails.push(userDetails);
+    
+        var finalData = JSON.stringify(mainObj);
+        fs.writeFile(file, finalData, function(err){
+          if(!err){
+            bootbox.alert("Staff Details saved successfully",function(){
+              location.replace('./index.html');
+            });
+          }else{
+            bootbox.alert("Something went wrong. Please try again.");
+          }
+        }) 
       }
+    }else{
+      var mainObj = {};
+      mainObj['loginDetails'] = {};
+      mainObj.loginDetails['staffDetails'] = [];
+      mainObj.loginDetails.staffDetails.push(userDetails);
+  
+      var finalData = JSON.stringify(mainObj);
+      fs.writeFile(file, finalData, function(err){
+        if(!err){
+          bootbox.alert("Staff Details saved successfully",function(){
+            location.replace('./index.html');
+          });
+        }else{
+          bootbox.alert("Something went wrong. Please try again.");
+        }
+      })
     }
   })
 });
