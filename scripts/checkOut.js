@@ -53,6 +53,7 @@ $(document).ready(function(){
 });
 
 $('#type').change(function(){
+  $('#productType').val('');
   $('#brand').val('');
   $('#size').val('');
   var val = $(this).val();
@@ -61,7 +62,7 @@ $('#type').change(function(){
     fs.readFile(file, function(err, data){
       if(!err){
         var mainObj = JSON.parse(data);
-        var brandList = mainObj.supplyDetails.filter(info=>info.supplyType===val).map(x=>x.brand);
+        var brandList = mainObj.supplyDetails.filter(info=>info.supplyType===val).map(x=>x.productType);
 
         //create the option element
         var options = '<option selected></option>';
@@ -69,18 +70,19 @@ $('#type').change(function(){
           options+='<option>'+item+'</option>';
         });
 
-        $('#brand').html(options);
+        $('#productType').html(options);
 
       }
     });
   }
 });
 
-$('#brand').change(function(){
+$('#productType').change(function(){
   $('#size').val('');
+  $('#brand').val('');
   var type = $('#type').val();
   if(!checkValue(type)){
-    bootbox.alert('Please select Supply type first.');
+    bootbox.alert('Please select Supply first.');
     return;
   }
   var val = $(this).val();
@@ -89,10 +91,41 @@ $('#brand').change(function(){
     fs.readFile(file, function(err, data){
       if(!err){
         var mainObj = JSON.parse(data);
-        var sizeList = mainObj.supplyDetails.filter(info=>info.supplyType===type&&info.brand===val).map(x=>x.size);
+        var sizeList = mainObj.supplyDetails.filter(info=>info.supplyType===type&&info.productType===val).map(x=>x.brand);
 
         //create the option element
-        var options = '';
+        var options = '<option selected></option>';
+        sizeList.map(function(item,idx){
+          options+='<option>'+item+'</option>';
+        });
+        $('#brand').html(options);
+      }
+    });
+  }
+});
+
+$('#brand').change(function(){
+  $('#size').val('');
+  var type = $('#type').val();
+  var productType = $('#productType').val();
+  if(!checkValue(type)){
+    bootbox.alert('Please select Supply.');
+    return;
+  }
+  if(!checkValue(productType)){
+    bootbox.alert('Please select Supply Type.');
+    return;
+  }
+  var val = $(this).val();
+  if(checkValue(val)){
+
+    fs.readFile(file, function(err, data){
+      if(!err){
+        var mainObj = JSON.parse(data);
+        var sizeList = mainObj.supplyDetails.filter(info=>info.supplyType===type&&info.productType===productType&&info.brand===val).map(x=>x.size);
+
+        //create the option element
+        var options = '<option selected></option>';
         sizeList.map(function(item,idx){
           options+='<option>'+item+'</option>';
         });

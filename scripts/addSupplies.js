@@ -35,6 +35,8 @@ $('#saveSupply').click(function(){
     var brand = $('#brand').val().trim();
     var size = $('#size').val().trim();
     var quantity = $('#quantity').val().trim();
+    var productType = $('#productType').val().trim();
+    var notes = $('#notes').val().trim();
 
     if(!checkValue(supplyType) && !checkValue(brand) && !checkValue(size)){
         bootbox.alert("Please fill all the fields");
@@ -46,6 +48,8 @@ $('#saveSupply').click(function(){
     supplyObj['brand'] = brand;
     supplyObj['size'] = size;
     supplyObj['quantity'] = quantity;
+    supplyObj['productType'] = productType;
+    supplyObj['notes'] = notes;
     supplyObj['timestamp'] = getTimeStamp();
 
     fs.readFile(file, function(err, data){
